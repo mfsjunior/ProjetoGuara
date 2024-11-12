@@ -57,8 +57,8 @@ $usuarioDAO = new UsuarioDAO();
 
 if($usuarioDAO->listar()){
 
-$this->setViewParam('listarUsuarios',$usuarioDAO->listar( ));
- $this->render('/usuario/listar');
+        $this->setViewParam('listarUsuarios',$usuarioDAO->listar( ));
+        $this->render('/usuario/listar');
             
         }else{
             Sessao::gravaMensagem("Erro ao listar usuários");
