@@ -7,7 +7,7 @@ use Exception;
 
 class App
 {
-    private $controller;
+    private $controller; //criação de variável privadas, que só podem ser acessados via getters/Setters
     private $controllerFile;
     private $action;
     private $params;
@@ -89,13 +89,13 @@ define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "");
             $objetoController->index($this->params);
             return;
         } else {
-            throw new Exception("Nosso suporte já esta verificando desculpe!", 500);
+            throw new Exception("Nosso suporte já esta verificando desculpe!", 500);// deu erro ao acessar o servidor
         }
-        throw new Exception("Página não encontrada.", 404);
+        throw new Exception("Página não encontrada.", 404);//aquela página não existe
     }
 
     public function url () {
-
+        //esse método vai tratar a url e verificar se está no padrão, do contrário, irá adequar 
         if ( isset( $_GET['url'] ) ) {
 
             $path = $_GET['url'];

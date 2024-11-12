@@ -34,7 +34,7 @@ class Sessao // serve para validar um conjunto de situações
     }
 
 public static function retornaValorFormulario($key){
-        return (isset($_SESSION['form'][$key])) ? $_SESSION['form'][$key] : "";
+        return (isset($_SESSION['form'][$key])) ? $_SESSION['form'][$key] : "";//retorna os valores que foram enviados pelo formulário, mas por algum motivo a página voltou e não guardou os dados, então ele recoloca os dados nos respectivos campos do formulário
     }
 
     public static function existeFormulario(){

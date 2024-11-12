@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Models\Entidades;
+/*
+Cria a entidade e cria suas variáveis, que só podem ser acessadas por meio dos métodos getter and setters por serem privadas
+*/
+
 
 class Cliente
 {

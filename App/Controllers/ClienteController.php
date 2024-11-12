@@ -27,11 +27,12 @@ class ClienteController extends Controller
         //criou uma instancia de Cliente
 
         //neste momento a variavel cliente vai usar o método set para modificar os dados cliente
+        //$_POST -> indica o método utilizado para enviar os dados de um formulário para uma outra pagina 
 
-        $cliente->setNome($_POST['nome']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setDTNasc($_POST['dtnasc']);
-        $cliente->setCPF($_POST['cpf']);
+        $cliente->setNome($_POST['nome']); //pega o nome que foi enviado 
+        $cliente->setTelefone($_POST['telefone']); //pega o telefone que foi enviado via form
+        $cliente->setDTNasc($_POST['dtnasc']);//pega a data de nascimento que foi enviado via form
+        $cliente->setCPF($_POST['cpf']);//pega o CPF que foi enviado via form
         
 
         Sessao::gravaFormulario($_POST);
@@ -41,28 +42,28 @@ class ClienteController extends Controller
         $clienteDAO = new CLienteDAO();
         //crio uma instancia do DAO para salvar no banco de dados
 
-        if($clienteDAO->salvar($cliente)){
-            $this->redirect('/cliente/sucesso');
+        if($clienteDAO->salvar($cliente)){//chama o DAO que sabe falar com o banco de dados e pede para ele realizar um insert na base 
+            $this->redirect('/cliente/sucesso');//redicionar para pagina cliente caso consiga salvar os dados do usuário
         }else{
-            Sessao::gravaMensagem("Erro ao gravar");
+            Sessao::gravaMensagem("Erro ao gravar");// coloca na sessão, em seu método gravarMensagem um mensagem de texto 
         }
     }
     
     public function sucesso()
     {
         if(Sessao::retornaValorFormulario('nome')) {
-            $this->render('/cliente/sucesso');
+            $this->render('/cliente/sucesso');//redicionar para pagina sucesso caso consiga salvar o formulario
 
-            Sessao::limpaFormulario();
-            Sessao::limpaMensagem();
+            Sessao::limpaFormulario(); // limpar o formulário 
+            Sessao::limpaMensagem();//limpa a mensagem 
         }else{
-            $this->redirect('/');
+            $this->redirect('/');//redireciona para a home
         }
     }
 
     public function index()
     {
-        $this->redirect('/cliente/cadastro');
+        $this->redirect('/cliente/cadastro');//redireciona para a cadastro
     }
 
 }

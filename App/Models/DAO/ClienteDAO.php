@@ -8,14 +8,18 @@ use App\Models\Entidades\Cliente;
 class ClienteDAO extends BaseDAO
 {
 
-
-    public  function salvar(Cliente $cliente) {
+/*
+Aqui vamos especializar o comando la do DAO, onde esse salvar vai salvar uma entidade CLiente
+*/
+    public  function salvar(Cliente $cliente) {//espera um argumento, que é uma entidade Cliente 
         try {
-            $nome      = $cliente->getNome();
-            $telefone     = $cliente->getTelefone();
-            $datanascimento     = $cliente->getDTNasc();
-            $cpf     = $cliente->getCPF();
+            $nome      = $cliente->getNome();//recupera nome
+            $telefone     = $cliente->getTelefone(); // recupera telefone
+            $datanascimento     = $cliente->getDTNasc(); // recupera data de nascimento
+            $cpf     = $cliente->getCPF();// recupera o cpf 
         
+
+        //com esses dados em mão, agora pega-se as variáveis e montam a lógica do insert como o BaseDAO disse como deveria ser
         return $this->insert(
                 'cliente',
                 ":nome,:telefone,:datanascimento,:cpf",
@@ -25,10 +29,10 @@ class ClienteDAO extends BaseDAO
                     ':datanascimento'=>$datanascimento,
                     ':cpf'=>$cpf
                 ]
-            );
+            ); ///retorna True se certo e False se houver erro
 
         }catch (\Exception $e){
-            throw new \Exception("Erro na gravação de dados.", 500);
+            throw new \Exception("Erro na gravação de dados.", 500);//se der erro, retorna essa mensagem 
         }
     }
 }
