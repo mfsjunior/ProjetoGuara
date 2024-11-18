@@ -19,6 +19,14 @@ foreach($viewVar['listarUsuarios'] as $listar) {
 <tr>
 <td><?php echo  $listar['nome']; ?></td>
 <td><?php echo  $listar['email']; ?></td>
+<?php
+
+
+?>
+<td>
+<a title="editar" href="http://<?php echo APP_HOST; ?>/usuario/edicao/<?php echo  $listar['id']; ?>" class="btn btn-edit edit">Editar</a>
+<a  title="excluir"href="http://<?php echo APP_HOST; ?>/usuario/deletar/<?php echo  $listar['id']; ?>" class="btn  btn-delarquivo">Excluir</a>
+</td>
 </tr>
 <?php } ?>
 </tbody>
