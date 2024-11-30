@@ -25,10 +25,6 @@
                     <label for="nome">CPF</label>
                     <input type="text" class="form-control"  name="cpf" placeholder="Seu nome" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
                 </div>
-                <div class="form-group">
-                    <label for="nome">Senha</label>
-                    <input type="password" class="form-control"  name="senha" placeholder="Sua senha" value="<?php echo $Sessao::retornaValorFormulario('senha'); ?>" required>
-                </div>
                
 
                 <button type="submit" class="btn btn-success btn-sm">Enviar</button>

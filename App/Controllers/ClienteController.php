@@ -33,7 +33,6 @@ class ClienteController extends Controller
         $cliente->setTelefone($_POST['telefone']); //pega o telefone que foi enviado via form
         $cliente->setDTNasc($_POST['dtnasc']);//pega a data de nascimento que foi enviado via form
         $cliente->setCPF($_POST['cpf']);//pega o CPF que foi enviado via form
-        $cliente->setSenha($_POST['senha']);
         
 
         Sessao::gravaFormulario($_POST);

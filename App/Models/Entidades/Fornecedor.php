@@ -14,7 +14,6 @@ class Fornecedor
     private $endereco;
     private $tipoDeServico;
     private $telefone;
-    private $senha;
 
     public function getId()
     {
@@ -95,16 +94,5 @@ class Fornecedor
     public function setTelefone($telefone)
     {
         $this->telefone = $telefone;
-    }
-
-
-    public function getSenha()
-    {
-        return $this->senha;
-    }
-
-    public function setSenha($senha)
-    {
-        $this->senha = $senha;
     }
 }

@@ -12,8 +12,7 @@ private $id;
 private $nome;
 private $dtnasc;
 private $cpf;
-private $telefone;
-private $senha;
+private $telefone; 
 
     public function getId()
     {
@@ -63,16 +62,5 @@ private $senha;
     public function setCPF($cpf)
     {
         $this->cpf = $cpf;
-    }
-
-
-    public function getSenha()
-    {
-        return $this->senha;
-    }
-
-    public function setSenha($senha)
-    {
-        $this->senha = $senha;
     }
 }

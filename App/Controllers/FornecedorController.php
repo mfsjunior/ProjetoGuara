@@ -26,7 +26,6 @@ class FornecedorController extends Controller
         $fornecedor->setEndereco($_POST['endereco']);
         $fornecedor->setTipoDeServico($_POST['tipoDeServico']);
         $fornecedor->setTelefone($_POST['telefone']);
-        $fornecedor->setSenha($_POST['senha']);
       
         Sessao::gravaFormulario($_POST);
 
@@ -35,7 +34,7 @@ class FornecedorController extends Controller
             Sessao::gravaMensagem("Esse CNPJ já está no nosso sistema");
             $this->redirect('/fornecedor/cadastro');
         }
-        //var_dump($fornecedor);
+
         if($fornecedorDAO->salvar($fornecedor)){
             $this->redirect('/fornecedor/sucesso');
         }else{

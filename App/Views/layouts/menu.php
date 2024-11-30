@@ -23,9 +23,6 @@
                 <li <?php if($viewVar['nameController'] == "FornecedorController") { ?> class="active" <?php } ?>>
                     <a href="http://<?php echo APP_HOST; ?>/fornecedor/cadastro" >Cadastro do Fornecedor</a>
                 </li>
-                <li <?php if($viewVar['nameController'] == "RecuperarController") { ?> class="active" <?php } ?>>
-                    <a href="http://<?php echo APP_HOST; ?>/recuperar/cadastro" >Recuperação de senha</a>
-                </li>
             </ul>
         </div>
     </div>
