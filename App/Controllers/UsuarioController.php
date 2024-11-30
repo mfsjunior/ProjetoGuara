@@ -21,6 +21,7 @@ class UsuarioController extends Controller
         $Usuario = new Usuario();
         $Usuario->setNome($_POST['nome']);
         $Usuario->setEmail($_POST['email']);
+       $Usuario->setSenha($_POST['senha']);
 
         Sessao::gravaFormulario($_POST);
 
@@ -30,7 +31,8 @@ class UsuarioController extends Controller
             Sessao::gravaMensagem("Email existente");
             $this->redirect('/usuario/cadastro');
         }
-
+        
+        var_dump($Usuario);
         if($usuarioDAO->salvar($Usuario)){
             $this->redirect('/usuario/sucesso');
         }else{

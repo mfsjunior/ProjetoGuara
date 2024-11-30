@@ -16,18 +16,20 @@ Aqui vamos especializar o comando la do DAO, onde esse salvar vai salvar uma ent
             $nome      = $cliente->getNome();//recupera nome
             $telefone     = $cliente->getTelefone(); // recupera telefone
             $datanascimento     = $cliente->getDTNasc(); // recupera data de nascimento
-            $cpf     = $cliente->getCPF();// recupera o cpf 
+            $cpf     = $cliente->getCPF();// recupera o cpf
+            $senha     = $cliente->getSenha(); 
         
 
         //com esses dados em mão, agora pega-se as variáveis e montam a lógica do insert como o BaseDAO disse como deveria ser
         return $this->insert(
                 'cliente',
-                ":nome,:telefone,:datanascimento,:cpf",
+                ":nome,:telefone,:datanascimento,:cpf, :senha",
                 [
                     ':nome'=>$nome,
                     ':telefone'=>$telefone,
                     ':datanascimento'=>$datanascimento,
-                    ':cpf'=>$cpf
+                    ':cpf'=>$cpf,
+                    ':senha'=>$senha
                 ]
             ); ///retorna True se certo e False se houver erro
 

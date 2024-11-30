@@ -9,6 +9,7 @@ class Usuario
     private $id;
     private $nome;
     private $email;
+    private $senha;
 
     public function getId()
     {
@@ -38,5 +39,17 @@ class Usuario
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+
+
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
     }
 }
