@@ -52,22 +52,21 @@ class UsuarioController extends Controller
         }
     }
 
-public function listar (){
+    public function listar (){
 
-$usuarioDAO = new UsuarioDAO();
+        $usuarioDAO = new UsuarioDAO();
 
 
-if($usuarioDAO->listar()){
+        if($usuarioDAO->listar()){
 
-        $this->setViewParam('listarUsuarios',$usuarioDAO->listar( ));
-        $this->render('/usuario/listar');
-            
-        }else{
-            Sessao::gravaMensagem("Erro ao listar usuários");
+                $this->setViewParam('listarUsuarios',$usuarioDAO->listar( ));
+                $this->render('/usuario/listar');
+                    
+                }else{
+                    Sessao::gravaMensagem("Erro ao listar usuários");
+                }
+        
         }
- 
- }
-
 
 
 
@@ -77,5 +76,77 @@ if($usuarioDAO->listar()){
     }
 
 
+    public function edicao($params){
+
+        $id = $params[0];
+        
+
+        if(ctype_digit($id)) {
+        
+
+         $usuarioDAO = new UsuarioDAO();
+
+         $usuario = $usuarioDAO->listarUm($id)[0]; 
+        
+            
+        
+                $this->setViewParam('editarusuario',$usuario);
+                $this->render('/usuario/editar');
+                Sessao::limpaFormulario();
+            Sessao::limpaMensagem();
+         
+              
+      
+        }
+
+    }
+    public function atualizar()
+    {
+        if(empty($_POST)) {
+            throw new \Exception("Página não encontrada.", 404);
+        } else {
+        
+
+        $usuario = new Usuario();
+        $usuario->setId(trim($_POST['id']));           
+        $usuario->setNome(trim($_POST['nome']));
+        $usuario->setEmail(trim($_POST['email']));
+        
+      
+        $usuarioDAO = new UsuarioDAO();
+        
+    
+       
+
+      if ($usuarioDAO->editar($usuario)) {
+                Sessao::gravaMensagem("Usuario editado com sucesso");
+                 $this->redirect('/usuario/listar/');
+        } else {
+                $this->redirect('/usuario/listar/'.$usuario->getId());
+            } 
+        }       
+    }
+    public function deletar($params)
+    {
+
+        $id = $params[0];
+
+        $usuario = new Usuario();
+        $usuario->setId($id);           
+       
+      
+        $usuarioDAO = new UsuarioDAO();
+        
+    
+       
+
+      if ($usuarioDAO->excluir($usuario)) {
+                Sessao::gravaMensagem("Usuario excluído  com sucesso");
+                 $this->redirect('/usuario/listar/');
+        } else {
+                $this->redirect('/usuario/listar/'.$usuario->getId());
+            } 
+          
+    }
 
 }

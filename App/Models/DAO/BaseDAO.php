@@ -42,4 +42,50 @@ abstract class BaseDAO
             return false;//caso dê erro, retorna falso 
         }
     }
+
+    public function update($table, $cols, $values, $where=null) 
+    {
+        if(!empty($table) && !empty($cols) && !empty($values))
+        {
+            if($where)
+            {
+                $where = " WHERE $where ";
+            }
+
+            $stmt = $this->conexao->prepare("UPDATE $table SET $cols $where");
+            $stmt->execute($values);
+
+            return $stmt->rowCount();
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+
+
+
+ public function delete($table, $where=null) 
+    {
+        if(!empty($table))
+        {
+            if($where)
+            {
+                $where = " WHERE $where ";
+            }
+
+            $stmt = $this->conexao->prepare("DELETE FROM $table $where");
+            $stmt->execute();
+
+            return $stmt->rowCount();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
 }
