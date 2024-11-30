@@ -25,12 +25,15 @@ class UsuarioDAO extends BaseDAO
         try {
             $nome      = $usuario->getNome();
             $email     = $usuario->getEmail();
+            $senha     = $usuario->getSenha();
             return $this->insert(
                 'usuario',
-                ":nome,:email",
+                ":nome,:email,:senha",
                 [
                     ':nome'=>$nome,
-                    ':email'=>$email
+                    ':email'=>$email,
+                    ':senha' => $senha
+
                 ]
             );
 
