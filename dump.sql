@@ -1,10 +1,34 @@
+CREATE DATABASE cadastro;
+USE cadastro;
 
-CREATE DATABASE cadastro ;
-use cadastro;
-
-CREATE TABLE usuario
-(
+CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(100) NOT NULL,
+    dataNascimento VARCHAR(255) NOT NULL,
+    cpf VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE fornecedor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    nome_fantasia VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(20) NOT NULL,
+    inscricao_estadual VARCHAR(20) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    tipo_servico VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

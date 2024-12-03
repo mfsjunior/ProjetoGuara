@@ -36,16 +36,16 @@ class FornecedorController extends Controller
         }
 
         if($fornecedorDAO->salvar($fornecedor)){
-            $this->redirect('/fornecedor/sucesso');
+            $this->redirect('/fornecedor/menu');
         }else{
             Sessao::gravaMensagem("Erro ao gravar");
         }
     }
     
-    public function sucesso()
+    public function menu()
     {
         if(Sessao::retornaValorFormulario('nome')) {
-            $this->render('/fornecedor/sucesso');
+            $this->render('/fornecedor/menu');
 
             Sessao::limpaFormulario();
             Sessao::limpaMensagem();

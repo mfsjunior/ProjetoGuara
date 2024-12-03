@@ -32,16 +32,16 @@ class UsuarioController extends Controller
         }
 
         if($usuarioDAO->salvar($Usuario)){
-            $this->redirect('/usuario/sucesso');
+            $this->redirect('/usuario/menu');
         }else{
             Sessao::gravaMensagem("Erro ao gravar");
         }
     }
     
-    public function sucesso()
+    public function menu()
     {
         if(Sessao::retornaValorFormulario('nome')) {
-            $this->render('/usuario/sucesso');
+            $this->render('/usuario/menu');
 
             Sessao::limpaFormulario();
             Sessao::limpaMensagem();

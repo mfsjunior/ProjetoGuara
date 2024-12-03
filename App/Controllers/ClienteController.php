@@ -43,16 +43,16 @@ class ClienteController extends Controller
         //crio uma instancia do DAO para salvar no banco de dados
 
         if($clienteDAO->salvar($cliente)){//chama o DAO que sabe falar com o banco de dados e pede para ele realizar um insert na base 
-            $this->redirect('/cliente/sucesso');//redicionar para pagina cliente caso consiga salvar os dados do usuário
+            $this->redirect('/cliente/menu');//redicionar para pagina cliente caso consiga salvar os dados do usuário
         }else{
             Sessao::gravaMensagem("Erro ao gravar");// coloca na sessão, em seu método gravarMensagem um mensagem de texto 
         }
     }
     
-    public function sucesso()
+    public function menu()
     {
         if(Sessao::retornaValorFormulario('nome')) {
-            $this->render('/cliente/sucesso');//redicionar para pagina sucesso caso consiga salvar o formulario
+            $this->render('/cliente/menu');//redicionar para pagina sucesso caso consiga salvar o formulario
 
             Sessao::limpaFormulario(); // limpar o formulário 
             Sessao::limpaMensagem();//limpa a mensagem 
@@ -67,3 +67,4 @@ class ClienteController extends Controller
     }
 
 }
+
