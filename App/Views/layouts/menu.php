@@ -23,6 +23,12 @@
                 <li <?php if($viewVar['nameController'] == "FornecedorController") { ?> class="active" <?php } ?>>
                     <a href="http://<?php echo APP_HOST; ?>/fornecedor/cadastro" >Cadastro do Fornecedor</a>
                 </li>
+				<li <?php if($viewVar['nameController'] == "PerfilController") { ?> class="active" <?php } ?>>
+                    <a href="http://<?php echo APP_HOST; ?>/perfil/cadastro" >Cadastro do Perfil</a>
+                </li>
+					<li <?php if($viewVar['nameController'] == "PerfilController") { ?> class="active" <?php } ?>>
+                    <a href="http://<?php echo APP_HOST; ?>/perfil/teste" >Teste do Perfil</a>
+                </li>
             </ul>
         </div>
     </div>

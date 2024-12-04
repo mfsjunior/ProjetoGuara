@@ -24,7 +24,7 @@ class App
          usuário e senha do banco de dados 
          especifica o drive do banco de dados
          */
-define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "");
+define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/ProjetoGuara");
         //guarda a URL do sistema 
         define('PATH'           , realpath('./'));
         //guarda um string para nos ajudar na navegação
@@ -46,7 +46,7 @@ define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "");
 
     public function run()
     {
-
+ 
         /* Método principal do sistema 
         */
         if ($this->controller) {
