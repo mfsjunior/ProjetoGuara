@@ -1,0 +1,47 @@
+-- Criação da tabela 'usuario'
+CREATE TABLE usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único para cada usuário
+    nome VARCHAR(100) NOT NULL,                 -- Nome do usuário
+    email VARCHAR(100) NOT NULL UNIQUE          -- Email do usuário, único
+);
+
+-- Criação da tabela 'cliente'
+CREATE TABLE cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único para cada cliente
+    nome VARCHAR(100) NOT NULL,                 -- Nome do cliente
+    data_nascimento DATE NOT NULL,              -- Data de nascimento do cliente
+    telefone VARCHAR(15) NOT NULL,              -- Telefone do cliente
+    cpf VARCHAR(11) NOT NULL UNIQUE             -- CPF do cliente, único
+);
+
+-- Criação da tabela 'fornecedor'
+CREATE TABLE fornecedor (
+    id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único para cada fornecedor
+    nome VARCHAR(100) NOT NULL,                     -- Nome do fornecedor
+    nome_fantasia VARCHAR(100) NOT NULL,            -- Nome fantasia do fornecedor
+    cnpj VARCHAR(14) NOT NULL UNIQUE,               -- CNPJ do fornecedor, único
+    inscricao_estadual VARCHAR(20),                 -- Inscrição estadual do fornecedor
+    endereco VARCHAR(255),                          -- Endereço do fornecedor
+    tipo_servico VARCHAR(100),                      -- Tipo de serviço prestado pelo fornecedor
+    telefone VARCHAR(15) NOT NULL                   -- Telefone do fornecedor
+);
+
+-- Criação da tabela 'login'
+CREATE TABLE login (
+    id_login INT AUTO_INCREMENT PRIMARY KEY,   -- Identificador único para cada login
+    nome_usuario VARCHAR(100) NOT NULL,         -- Nome de usuário (referente ao usuário)
+    email_usuario VARCHAR(100) NOT NULL,        -- Email de login do usuário
+    senha VARCHAR(255) NOT NULL,                 -- Senha de login
+    tipo_login VARCHAR(50) NOT NULL,             -- Tipo de login (ex: admin, cliente, fornecedor)
+    FOREIGN KEY (email_usuario) REFERENCES usuario(email)  -- Relacionamento com a tabela 'usuario'
+);
+
+CREATE TABLE avisos (
+    id_avisos INT AUTO_INCREMENT PRIMARY KEY,       -- Identificador único para cada aviso
+    mensagem VARCHAR(255) NOT NULL,                 -- Mensagem do aviso
+    tipo VARCHAR(50) NOT NULL,                      -- Tipo do aviso (ex: Sucesso, Erro, Aviso, etc.)
+    id_usuario INT,                                 -- Opcional: Relacionar o aviso com um usuário
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) -- Relacionamento com a tabela 'usuario' 
+    FOREIGN KEY (id_cliente) REFERENCES usuario(id_cliente) -- Relacionamento com a tabela 'cliente' 
+    FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id_fornecedor) -- Relacionamento com a tabela 'fornecedor' 
+);
