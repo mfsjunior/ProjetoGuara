@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h3>Cadastro de Clientes</h3>
+
+             <?php 
+            // Exibir Clientes da sessão
+            $ClientesDAO = new ClientesDAO($pdo);
+            $Clientes = $ClientesDAO->obterAvisos();
+
+            foreach ($Clientes as $Clientes) {
+                $tipoClass = 'alert-info'; 
+                if ($Clientes['tipo'] == 'sucesso') {
+                    $tipoClass = 'alert-success';
+                } elseif ($Clientes['tipo'] == 'erro') {
+                    $tipoClass = 'alert-danger';
+                } elseif ($Clientes['tipo'] == 'Clientes') {
+                    $tipoClass = 'alert-warning';
+                }
+                echo "<div class='alert $tipoClass' role='alert'>{$Clientes['mensagem']}</div>";
+
+                // Deletar Clientes após ser exibido 
+                $ClientesDAO->deletarClientes($Clientes['id']);
+            }
+            ?>
+
+            <form action="http://<?php echo APP_HOST; ?>/cliente/salvar" method="post" id="form_cadastro">
+                <div class="form-group">
+                    <label for="nome">Nome do cliente</label>
+                    <input type="text" class="form-control"  name="nome" placeholder="Seu nome" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Telefone</label>
+                    <input type="text" class="form-control"  name="telefone" placeholder="Seu nome" value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Data de nascimento</label>
+                    <input type="text" class="form-control"  name="dtnasc" placeholder="Seu nome" value="<?php echo $Sessao::retornaValorFormulario('dtnasc'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="nome">CPF</label>
+                    <input type="text" class="form-control"  name="cpf" placeholder="Seu nome" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
+                </div>
+               
+
+                <button type="submit" class="btn btn-success btn-sm">Enviar</button>
+            </form>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Suponha que $clienteDAO->salvar() retorne um booleano indicando sucesso ou falha
+                if ($ClientesDAO->salvar($Clientes)) {
+                    $ClientesDAO->criarClientes("Clientes cadastrado com sucesso!", "sucesso");
+                    $this->redirect('/cliente/sucesso');
+                } else {
+                    $ClientesDAO->criarClientes("Erro ao cadastrar Clientes. Verifique os dados.", "erro");
+                }
+            }
+            ?>
+        </div>
+        <div class=" col-md-3"></div>
+    </div>
+</div>
